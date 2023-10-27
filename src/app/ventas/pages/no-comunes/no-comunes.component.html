@@ -1,0 +1,60 @@
+<div class="text-layout">
+    <h1>Pipes no tan comunes</h1>
+    <p>Pipes incluidos en Angular - Usualmente en el Common Module</p>
+</div>
+
+<div class="grid">
+    <div class="col" md-4>
+        <p-fieldset legend="i18nSelectPipe" [toggleable]="true" [collapsed]="true">
+            <p>Saludos {{nombre}}, es un placer
+                {{genero | i18nSelect:invitacionMapa}}
+                a nuestro evento.</p>
+            <button pButton (click)="cambiarPersona()" label="Cambiar persona" class="p-button-warning"></button>
+        </p-fieldset>
+    </div>
+    <div class="col" md-4>
+        <p-fieldset legend="i18nPluralPipe" [toggleable]="true" [collapsed]="true">
+            <p>Actualmente {{clientes.length | i18nPlural:clientesMapa}}.</p>
+            <button pButton (click)="borrarCliente()" label="Borrar cliente" class="p-button-danger"></button>
+        </p-fieldset>
+    </div>
+    <div class="col" md-4>
+        <p-fieldset legend="SlidePipe" [toggleable]="true" [collapsed]="true">
+            <b>Original</b>
+            <!-- NO SE ACTUALIZA AL BORRAR UN CLIENTE-->
+            <!-- ES UN OBJETO Y NO LO VUELVE A DIBUJAR-->
+            <pre>{{clientes}}</pre>
+            <!-- SE ACTUALIZA -->
+            <span *ngFor="let cliente of clientes">{{cliente}}</span>
+            <p><b>slice:0:2</b></p>
+            <pre>{{clientes | slice:0:2}}</pre>
+            <p><b>slice:1:2</b></p>
+            <pre>{{clientes | slice:1:2}}</pre>
+            <p><b>slice:1:2</b></p>
+            <pre>{{clientes | slice:1:2}}</pre>
+            <p><b>slice:0:4</b></p>
+            <pre>{{'fernando slice:0:4'| slice:0:4}}</pre>
+            <pre>{{nombre| slice:0:4}}</pre>
+        </p-fieldset>
+    </div>
+    <div class="col" md-4>
+        <p-fieldset legend="KeyValue Pipe" [toggleable]="true" [collapsed]="true">
+            <ul>
+                <li *ngFor="let item of persona | keyvalue">
+                    <!-- {{item |json}} -->
+                    <b>{{item.key | titlecase}} :</b> {{item.value}}
+                </li>
+            </ul>
+        </p-fieldset>
+    </div>
+    <div class="col" md-6>
+        <p-fieldset legend="Json Pipe" [toggleable]="true" [collapsed]="true">
+            <pre>{{persona | json}}</pre>
+        </p-fieldset>
+    </div>
+    <div class="col" md-6>
+        <p-fieldset legend="Async Pipe" [toggleable]="true" [collapsed]="true">
+            <pre>{{miObservable | async}}</pre>
+        </p-fieldset>
+    </div>
+</div>
